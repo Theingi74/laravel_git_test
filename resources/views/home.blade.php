@@ -6,10 +6,17 @@
 
 
 @section('content')
-	@foreach($data as $value)
-		<li>{{ $value->name}}</li>
-		<li>{{ $value->ingredients }}</li>
-		<li>{{ $value->category }}</li>
-		<hr>
-	@endforeach
+	<div class="container">
+		<h2>Home Page</h2>
+		<a href="/receipe/create">
+			<button class="btn btn-success"> Create Receipe </button>
+		</a>
+		<br><br>
+		@foreach($data as $value)
+			<a href="/receipe/{{ $value->id }}"><li>Name        : {{ $value->name}}</li></a>
+			<li>Ingredients : {{ $value->ingredients }}</li>
+			<li>Category    : {{ $value->category }}</li>
+			<hr>
+		@endforeach
+	</div>
 @endsection

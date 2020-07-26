@@ -11,36 +11,24 @@
 |
 */
 
+Route::resource('receipe','ReceipeController');
 
-Route::get('/', 'ReceipeController@index');
 
-/*Route::get('/', 'HomeController@index');
-Route::get('php','HomeController@phpPage');
-Route::get('js','HomeController@jsPage');*/
-
-/*Route::get('/', function () {
-    return view('home')->with('name','Home Page With');
-});
+/*Route::get('receipe', 'ReceipeController@index');
+Route::get('receipe/create','ReceipeController@createReceipeForm');
+Route::get('receipe/{id}','ReceipeController@show');
+Route::post('receipe','ReceipeController@create');
+Route::get('receipe/{id}/edit','ReceipeController@edit');
+Route::patch('receipe/{id}','ReceipeController@update');
+Route::delete('receipe/{id}','ReceipeController@delete');
 */
-/*Route::get('php',function() {
-	return view('php',[
-		'data' => array(
-          'lesson1' => 'This is Lesson1',
-          'lesson2' => 'This is Lesson2',
-          'lesson3' => 'This is Lesson3',
-		)
-       
-	]);
 
-});*/
 
-/*Route::get('js',function(){
-	return view('js',[
-		'data' => array(
-		  'lesson1' => 'This is JS Lesson1',
-          'lesson2' => 'This is JS Lesson2',
-          'lesson3' => 'This is JS Lesson3',
+//get all index page(GET) /receipe
+//create form (GET) receipe/create
+//show data(GET) receipe/1
+//create receipe (POST) request
+//edit form(GET) receipe/1/edit
+//update form(PATCH) receipe/1
+//delete receipe (DELETE) request receipe/1
 
-		)
-	]);
-});*/
