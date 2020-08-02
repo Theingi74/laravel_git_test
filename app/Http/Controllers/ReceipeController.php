@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Receipe;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ReceipeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,9 @@ class ReceipeController extends Controller
      */
     public function index()
     {
-        $data = Receipe::all();
+
+        $data = Receipe::where('author_id',auth()->id())->get();
+        /*dd(auth()->check());*/
         return view('home',compact('data'));
     }
 
@@ -25,7 +33,8 @@ class ReceipeController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $category = Category::all();
+        return view('create',compact('category'));
     }
 
     /**
@@ -36,8 +45,8 @@ class ReceipeController extends Controller
      */
     public function store(Request $request)
     {
-       
-       Receipe::create($this->validation($request));
+       /*dd(request()->all());*/
+       Receipe::create($this->validation($request) + ['author_id' => auth()->id()]);
        return redirect('receipe');
     }
 
@@ -49,6 +58,11 @@ class ReceipeController extends Controller
      */
     public function show(Receipe $receipe)
     {
+        /*dd($receipe->categories->name);*/
+      /*  if ($receipe->author_id != auth()->id()) {
+            abort(404);
+        }*/
+        $this->authorize('view',$receipe);
         return view('show',compact('receipe'));
     }
 
@@ -60,8 +74,11 @@ class ReceipeController extends Controller
      */
     public function edit($id)
     {
+
+        $category = Category::all();
         $receipe = Receipe::find($id);
-        return view('edit',compact('receipe'));
+        $this->authorize('view',$receipe);
+        return view('edit',compact('receipe','category'));
     }
 
     /**

@@ -12,6 +12,10 @@
 */
 
 Route::resource('receipe','ReceipeController');
+Route::get('home','HomeController@index');
+Auth::routes();
+
+
 
 
 /*Route::get('receipe', 'ReceipeController@index');

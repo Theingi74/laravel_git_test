@@ -13,20 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    
+                    Please Login....To Continue.....
 
-                    <div class="container">
-						<h2>Home Page</h2>
-						<a href="/receipe/create">
-							<button class="btn btn-success"> Create Receipe </button>
-						</a>
-						<br><br>
-						@foreach($data as $value)
-							<a href="/receipe/{{ $value->id }}">
-								<li>{{ $value->name}}</li>
-							</a>
-							<hr>
-						@endforeach
-					</div>
                 </div>
             </div>
         </div>
